@@ -17,4 +17,8 @@ class Solution {
         }
         return profit;
     }
+
+    // we have taken a approach where first we have find the max array which is 
+    // just a array containing the max value after that value and then subracting the value 
+    //from there and  then runned loop over the main array and get the maximum profit 
 }
