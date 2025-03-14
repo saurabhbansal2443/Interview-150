@@ -24,3 +24,5 @@ class Solution {
         return start;        
     }
 }
+
+// in this question we have 2 array cost and gas where we have to complete 1 circle for that we have firstly check weather we  the totalcost > totalgas that means it is impossible to to complete circle, so we return -1 and after that if code comes that means that there is a solution, then we are checking for the solution by checking the correct point where to start 
