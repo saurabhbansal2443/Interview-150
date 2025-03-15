@@ -10,3 +10,7 @@ class Solution {
         return profit ; 
     }
 }
+
+// int this question we have used the trick that if adjacent value that means 
+// prices[i] - prices[i-1] is giving positive value only adding that 
+// transcition to that profit 
