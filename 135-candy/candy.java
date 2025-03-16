@@ -31,4 +31,9 @@ class Solution {
 
         return sum ; 
     }
+
+    // in this case we have taken a left and right array in the left considering onoy the 
+    // left neighour is only there and similarly the right array and then taken the 
+    // maximum value out of it and adding that because that will statisfy the both the 
+    //condition 
 }
