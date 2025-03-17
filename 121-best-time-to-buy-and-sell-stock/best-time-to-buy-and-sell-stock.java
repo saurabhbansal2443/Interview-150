@@ -19,6 +19,8 @@ class Solution {
     }
 
     // we have taken a approach where first we have find the max array which is 
-    // just a array containing the max value after that value and then subracting the value 
+    // just a array containing the max value present after that value in the array, 
+    // after that value and then subracting the value and get the maximum profit of that 
+    // day ( means if we buy the stock on that day this is going to be the maximum profit)
     //from there and  then runned loop over the main array and get the maximum profit 
 }
