@@ -18,6 +18,7 @@ class Solution {
 
     // in this we have to remove duplicates in sorted array but at most 2 times
     // a element can come at most twice so we are cheking i-2th element is it 
-    //same or not and then replacing p1 with p2 only 
+    //same that means the element is coming 3 times or not and then replacing p1 with 
+    // p2 only so that maximum of 2 times a element can come 
 }
     
