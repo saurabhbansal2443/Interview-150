@@ -28,5 +28,8 @@ class Solution {
 // in this question we have 2 find the minimum number of jumps to cross the 
 //array or reach the last index for that we have selected a window from index
 // 1 --> nums[0] first then find out the maximum number of index which can be
-// reached from this array and then the next window is nums[0]-->max[jump]
+// reached from this array and then the next window is nums[0]-->nums[maxJump]
 //kind of this thing 
+
+// if we just see the code it seem to be O(n^2) but the time complexity is just o(n) 
+// as we are traversing the array only one time 
