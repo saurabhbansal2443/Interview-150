@@ -15,10 +15,15 @@ class Solution {
            int water =   Math.min(Math.max(leftMax , height[i-1]), right[i]) - height[i]; 
 
            if( water > 0 ) sum+= water ; 
-           
+
             leftMax = Math.max(leftMax, height[i]);
         }
 
         return sum ; 
     }
+
+    // in this question we have taken a approach finding the leftmax array and rightMax
+    // array which contains the value of the maximum value at the left before that value 
+    // same for right max and then taking the minimum out of it as water can be stored till 
+    // the minimum wall and deleting the height of the current building and adding that 
 }
