@@ -1,27 +1,51 @@
 class Solution {
-    public boolean isPalindrome(String s) {
-        if (s==" ") return true;
-        StringBuilder sb=new StringBuilder();
-        for(int i=0;i<s.length();i++){
-            char a=s.charAt(i);
-            if(a>='a' && a<='z'){
-                sb.append(a);
-            }else if(a>='A' && a<='Z'){
-                char b=Character.toLowerCase(a);
-                sb.append(b);
-            }else if(a>='0' && a<='9'){
-                 sb.append(a);
-            }
-            
-        
-        }
-        
-        String s1=sb.toString();
-        String s2=(sb.reverse()).toString();
-        if(s1.equals(s2)){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean isPalindrome(String str) {
+        str = str.trim(); 
+        if(str.length() ==0 || str.length() ==1){
+            return true  ; 
+        } 
+
+        String formatted = formatString(str); 
+        return checkPlaindrome(formatted); 
+
     }
+
+    public String formatString(String str){
+     
+        if(str.length() ==0 || str.length() ==1){
+            return str ; 
+        }
+        StringBuilder sb = new StringBuilder(); 
+
+        for(int i=0 ; i<str.length();i++){
+            char ch = str.charAt(i); 
+
+            if(ch>='A' && ch<='Z'){
+                sb.append((char)(ch-'A'+'a')); 
+            }else if (ch>='a' && ch<='z'){
+                sb.append(ch); 
+            }else if(ch>='0' && ch<='9'){
+                 sb.append(ch);
+            }
+        }
+        return sb.toString(); 
+    }
+
+    public boolean checkPlaindrome(String str){
+        int start = 0 ; 
+        int end = str.length()-1; 
+
+        while(start<end){
+            char chEnd = str.charAt(end); 
+            char chSt = str.charAt(start); 
+
+            if(chEnd != chSt){
+                return false; 
+            }
+            start++; 
+            end--; 
+        }
+        return true ; 
+    }
+
 }
