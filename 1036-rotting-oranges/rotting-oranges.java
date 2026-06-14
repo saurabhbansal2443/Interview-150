@@ -1,79 +1,88 @@
 class Solution {
-    class Pair {
-        int i;
-        int j;
 
-        Pair(int i, int j) {
-            this.i = i;
-            this.j = j;
+    class Pair {
+        int r;
+        int c;
+
+        Pair(int r, int c) {
+            this.r = r;
+            this.c = c;
         }
     }
 
     public int orangesRotting(int[][] grid) {
+        int fo = 0;
+        int rows = grid.length;
+        int cols = grid[0].length;
 
         Queue<Pair> main = new LinkedList<>();
         Queue<Pair> helper = new LinkedList<>();
 
-        int fresh = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
 
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 2) {
+                if (grid[i][j] == 1) {
+                    fo++;
+                } else if (grid[i][j] == 2) {
                     main.add(new Pair(i, j));
-                } else if (grid[i][j] == 1) {
-                    fresh++;
                 }
             }
         }
 
-        if(fresh==0 ){
-            return 0 ; 
+        if (fo == 0) {
+            return 0;
         }
-        int time = 0;
+
+        int level = 0;
+
         while (main.size() > 0) {
-
             Pair p = main.remove();
+            int r = p.r;
+            int c = p.c;
 
-            int r = p.i;
-            int c = p.j;
-
-            if (isFreshOrange(r - 1, c, grid)) {
+            if (isSafe(r - 1, c, rows, cols, grid)) {
                 helper.add(new Pair(r - 1, c));
-                fresh--;
+                grid[r - 1][c] = 2;
+                fo--;
             }
-            if (isFreshOrange(r, c + 1, grid)) {
+
+            if (isSafe(r, c + 1, rows, cols, grid)) {
                 helper.add(new Pair(r, c + 1));
-                fresh--;
+                grid[r][c + 1] = 2;
+                fo--;
             }
-            if (isFreshOrange(r + 1, c, grid)) {
+
+            if (isSafe(r + 1, c, rows, cols, grid)) {
                 helper.add(new Pair(r + 1, c));
-                fresh--;
+                grid[r + 1][c] = 2;
+                fo--;
             }
-            if (isFreshOrange(r, c - 1, grid)) {
+
+            if (isSafe(r, c - 1, rows, cols, grid)) {
                 helper.add(new Pair(r, c - 1));
-                fresh--;
+                grid[r][c - 1] = 2;
+                fo--;
             }
 
             if (main.size() == 0) {
+                level++;
                 main = helper;
                 helper = new LinkedList<>();
-                time++;
             }
+
         }
 
-        if (fresh == 0) {
-            return time-1;
+        if (fo == 0) {
+            return level - 1;
         } else {
             return -1;
         }
     }
 
-    public boolean isFreshOrange(int r, int c, int[][] grid) {
-
-        if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length || grid[r][c] != 1) {
+    public boolean isSafe(int r, int c, int rows, int cols, int[][] grid) {
+        if (r < 0 || c < 0 || r >= rows || c >= cols || grid[r][c] != 1) {
             return false;
         }
-        grid[r][c] = 2;
         return true;
     }
 }
