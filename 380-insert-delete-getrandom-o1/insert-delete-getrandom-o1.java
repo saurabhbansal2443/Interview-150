@@ -1,41 +1,42 @@
 class RandomizedSet {
 
-    ArrayList<Integer> arr ; 
-    HashMap<Integer,Integer> hm ; 
+    private ArrayList<Integer> arr;
+    private HashMap<Integer, Integer> hm;
 
     public RandomizedSet() {
-            arr = new ArrayList<>(); 
-            hm = new HashMap<>(); 
+        arr = new ArrayList<>();
+        hm = new HashMap<>();
     }
-    
-    public boolean insert(int val) {
-        
-        if(hm.containsKey(val)) return false ; 
 
-        arr.add(val); 
-        hm.put(val , arr.size()-1 ); 
+    public boolean insert(int val) {
+        if(hm.containsKey(val))return false ;
+        arr.add(val);  
+        hm.put(val, arr.size()-1); 
         return true ; 
     }
-    
+
     public boolean remove(int val) {
-      boolean containsValue = hm.containsKey(val); 
-           if( containsValue == false ) return false ; 
+      if(!hm.containsKey(val)) return false ;
 
-           int valIndex = hm.get(val); 
-           int lastValue =  arr.get(arr.size()-1);
-           arr.set(valIndex , lastValue ); 
-           hm.put(lastValue  , valIndex); 
-           arr.remove(arr.size()-1);
-           hm.remove(val);
+      int index = hm.get(val); 
+      int lastVal = arr.get(arr.size()-1); 
+      arr.set(index, lastVal); 
+      arr.remove(arr.size()-1); 
 
-           return true ; 
+      hm.put(lastVal , index ); 
+
+      hm.remove(val); 
+
+      return true ; 
+      
     }
-    
-   public int getRandom() {
-          if (arr.isEmpty()) throw new IllegalStateException("Set is empty");
-            int randomNumber = (int) ((Math.random() * arr.size()));
+
+    public int getRandom() {
+
+        int randomNumber = (int) ((Math.random() * arr.size()));
 
             return arr.get(randomNumber); 
+
     }
 }
 
