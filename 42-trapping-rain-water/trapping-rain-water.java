@@ -1,29 +1,34 @@
 class Solution {
     public int trap(int[] height) {
+
         int n = height.length ; 
-        int[] right = new int[n]; 
-        right[n-1] = height[n-1]; 
+        
+        int[] leftMax = new int[n]; 
+        int[] rightMax = new int[n]; 
 
-        for(int i=n-2 ; i>=0 ; i-- ){
-            right[i] = Math.max(right[i+1] , height[i+1]) ;
-        }
-
-        int sum = 0 ; 
-        int leftMax = height[0]; 
+        leftMax[0] = 0 ; 
 
         for(int i=1 ; i<n; i++ ){
-           int water =   Math.min(Math.max(leftMax , height[i-1]), right[i]) - height[i]; 
-
-           if( water > 0 ) sum+= water ; 
-
-            leftMax = Math.max(leftMax, height[i]);
+            leftMax[i] = Math.max(leftMax[i-1] , height[i-1]); 
         }
 
-        return sum ; 
-    }
+        rightMax[n-1] = 0 ; 
 
-    // in this question we have taken a approach finding the leftmax array and rightMax
-    // array which contains the value of the maximum value at the left before that value 
-    // same for right max and then taking the minimum out of it as water can be stored till 
-    // the minimum wall and deleting the height of the current building and adding that 
+        for(int i=n-2 ; i>=0 ; i--){
+
+            rightMax[i] = Math.max(rightMax[i+1], height[i+1]); 
+        }
+
+        int ans = 0 ; 
+
+        for(int i=0 ; i<n ; i++ ){
+            int water = Math.min(rightMax[i], leftMax[i]) - height[i]; 
+
+            if(water > 0 ){
+                ans+= water ; 
+            }
+        }
+
+        return ans ; 
+    }
 }
